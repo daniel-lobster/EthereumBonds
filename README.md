@@ -1,39 +1,43 @@
-# TokenLoans
-## Decentralized Finance for Everyone
+# EthereumBonds
+## Issue Bonds in the Ethereum Blockchain
 
 <p align='center'> <img src='images/decentralized_finance.jpg'></p>
 
-TokenLoans is a solidity contract that allows borrowers to fundraise Ether for a project. Investors can buy the tokens produced by the contract (ERC20 tokens) and they get paid back the principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invests or not. 
+EthereumBonds is a decentralized application (dapp) that by deploying a solidity contract allows borrowers to issue a bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invests or not.
 
-The borrower sells its tokens at a discount and has to buy them back at parity. 
+The borrower sells its bonds at a discount and has to buy them back at parity. 
 
-### Sell Tokens
+### Sell Bonds at a Discount
 
-In this example the borrower sells its tokens at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 tokens. 
+In this example the borrower sells its bonds at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 bonds. 
 
 <p align='left'> <img src='images/discounted_rate.JPG'width="500"></p>
 
-### Buy Back the Tokens
+### Redeem the Bonds at Parity
 
-The borrower has to buy back the tokens at parity i.e. 1 token gives back 1 Ether. The tokens produced by the contract have the same number of decimals (18) as Ether. 
+The borrower has to buy back the bonds at parity i.e. 1 bond gives back 1 Ether. The bonds produced by the contract have the same number of decimals (18) as Ether. 
 <p align='left'> <img src='images/parity_rate.JPG'width="500"></p>
 
-The difference between the sell and buy price is the interest the investor makes. In this example the investors get an interest of 11.11%. The user has to pay in equal monthly installments. 
+The difference between the sell and buy price is the interest the investors make. In this example the investors get an interest of 11.11%. The borrower redeems the bonds in equal monthly installments. 
 
 ## What the Contract Cannot Do
 
 * Force payment
 * Schedule a payment 
 
-Every solidity contract has these limitations. The Ethereum Virtual Machine does not offer a scheduling service and it cannot extract money from a private wallet. The contract, however, does provide two public variables that can be used to determine the health of the contract: percentage_paid_to_investors and contract_ended_successfully (this boolean turns true if the investors were paid within the timeframe stated by the borrower).
+Every solidity contract has these limitations. The Ethereum Virtual Machine does not offer a scheduling service and it cannot extract money from a private wallet. The contract, however, does provide two public variables that can be used to determine the health of the contract: the percentage paid to investors and whether the contract ended successfully (this boolean turns true if the investors were paid within the timeframe stated by the borrower).
 
-## How to Set Up the Contract
+## EthereumBonds User Interface
 
-The contract has 5 constructors (as seen in Remix IDE):
+The dapp consist of only one page. At the top there are two inputs: Contract address and signer private key. These two inputs are required for every transaction except for deployment where the borrower only needs their private key.
+
+## How to Deploy the Contract
+
+The contract has 5 constructors:
 
 <p align='left'> <img src='images/constructors.JPG' width="500"></p>
 
-1) Fundraising goal in wei: If the borrower wants 1 Ether they will have to put 1 followed by 18 zeros. 
+1) Fundraising goal (ETH): If the borrower wants 1 Ether they will have to put 1 followed by 18 zeros. 
 2) Discounted price for 1000TKL: How much will an investor pay for 1000 of the borrower's tokens? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
 3) Maturity in months: How many equal monthly payments does the borrower want to make?
 4) Number of fundraising days: The borrower has to define a period for the fundraising. If the time ends and the goal hasn't been reached investors can pull their money out. 
