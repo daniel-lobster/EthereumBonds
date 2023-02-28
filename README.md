@@ -49,7 +49,22 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 At the bottom right of the page there is the Contract Info field. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a private key can do it. All the constructor variables and the owner of the contract are public. 
 
-Below other public variables
+Below other public variables:
+
+Fundraising Ended?: The default value of this boolean is false. It turns true when the fundraising goal is reached. 
+
+Contract Funds (ETH): The proceeds of the bond sale do not go directly to the borrower but rest within the contract itself. 
+
+Outstanding Bonds: Total number of bonds that haven't been redeemed yet. 
+
+Outstanding Bonds Minus Contract Funds: During the fundraising the funds in the contract will be less that the number of bonds sold. The borrower will have to pay that difference which is the interest owed to investors.  
+
+Percentage paid to investors: Redeemed bonds divided by total bonds sold times 100. This is usually 1 percentage point off due to lack of float type in solidity, thus 99 means that investors were paid in full. 
+
+Time contract was deployed:
+
+
+
 
 ### Contract Ended Successfully
 
@@ -57,11 +72,7 @@ Below other public variables
 
 The default value of this boolean is false. It turns true if all investors get paid within the timeframe specified by the borrower. 
 
-#### Fundraising Ended
 
-<p align='left'> <img src='images/fundraising_ended.jpg' width="600"></p>
-
-The default value of this boolean is false. It turns true when the fundraising goal is reached. 
 
 #### Percentage Paid to Investors
 
@@ -75,11 +86,7 @@ Percentage of total tokens sold that have been refunded. This is usually 1% off 
 
 The contract timestamps three events: deployment of the contract, fundraising ends, payment to investors is complete. It is possible that one of the last two benchmarks is not met, in that case the value is zero. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970.
 
-#### Total Contract Funds and Total Supply
 
-<p align='left'> <img src='images/total_supply.JPG' width="300"></p>
-
-totalContractFundsinWei tells the user the total funds in the contract. Total supply is the number of tokens that are outstanding in the hands of investors. This example is from when a fundraising ended and no funds have been withdrawn, the borrower fundraised 250 ether, notice that the number of tokens is higher, the difference is the interest. 
 
 #### Outstanding Tokens Minus Contract Funds
 
