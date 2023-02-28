@@ -37,7 +37,7 @@ The contract has 5 constructors:
 
 <p align='left'> <img src='images/constructors.JPG' width="500"></p>
 
-1) Fundraising goal (ETH): The contract needs a fundraising goal. 
+1) Fundraising goal (ETH): The contract needs a fundraising goal denominated in ethereum. 
 2) Discounted price for 1000 (ETB): How much will an investor pay for 1000 of the borrower's bonds? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
 3) Maturity in months: How many equal monthly payments does the borrower want to make?
 4) Number of fundraising days: If the time ends and the goal hasn't been reached investors can pull their money out. If the fundraising time hasn't ended the borrower can return the principal to investors. 
@@ -47,9 +47,11 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 ## Contract Info
 
-At the bottom right of the page there is the field Contract Info. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a private key can do it. All the variables that were used as constructors and the owner of the contract are public. 
+At the bottom right of the page there is the Contract Info field. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a private key can do it. All the constructor variables and the owner of the contract are public. 
 
-#### Contract Ended Successfully
+Below other public variables
+
+### Contract Ended Successfully
 
 <p align='left'> <img src='images/contract_ended.jpg' width="600"></p>
 
