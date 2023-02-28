@@ -3,7 +3,7 @@
 
 <p align='center'> <img src='images/decentralized_finance.jpg'></p>
 
-EthereumBonds is a decentralized application (dapp) that by deploying a solidity contract allows borrowers to issue a bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invests or not.
+EthereumBonds is a decentralized application (dapp) that by deploying a solidity contract allows borrowers to issue a bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invests or not. The solidity contract used by the dapp is called TokenLoans. 
 
 The borrower sells its bonds at a discount and has to buy them back at parity. 
 
@@ -27,9 +27,9 @@ The difference between the sell and buy price is the interest the investors make
 
 Every solidity contract has these limitations. The Ethereum Virtual Machine does not offer a scheduling service and it cannot extract money from a private wallet. The contract, however, does provide two public variables that can be used to determine the health of the contract: the percentage paid to investors and whether the contract ended successfully (this boolean turns true if the investors were paid within the timeframe stated by the borrower).
 
-## EthereumBonds User Interface
+## Required Fields
 
-The dapp consist of only one page. At the top there are two inputs: Contract address and signer private key. These two inputs are required for every transaction except for deployment where the borrower only needs their private key.
+At the top there are two inputs: Contract address and signer private key. These two inputs are required for every transaction except for deployment when the borrower only needs their private key. 
 
 ## How to Deploy the Contract
 
@@ -37,13 +37,53 @@ The contract has 5 constructors:
 
 <p align='left'> <img src='images/constructors.JPG' width="500"></p>
 
-1) Fundraising goal (ETH): If the borrower wants 1 Ether they will have to put 1 followed by 18 zeros. 
-2) Discounted price for 1000TKL: How much will an investor pay for 1000 of the borrower's tokens? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
+1) Fundraising goal (ETH): The contract needs a fundraising goal. 
+2) Discounted price for 1000 (ETB): How much will an investor pay for 1000 of the borrower's bonds? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
 3) Maturity in months: How many equal monthly payments does the borrower want to make?
-4) Number of fundraising days: The borrower has to define a period for the fundraising. If the time ends and the goal hasn't been reached investors can pull their money out. 
+4) Number of fundraising days: If the time ends and the goal hasn't been reached investors can pull their money out. If the fundraising time hasn't ended the borrower can return the principal to investors. 
 5) Grace period in months: number of months before the borrower has to start making payments. 
 
-The wallet that deploys the contract becomes the owner.
+The wallet that deploys the contract becomes the owner. The contract address will appear in the corresponding input at the top. 
+
+## Contract Info
+
+At the bottom right of the page there is the field Contract Info. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a private key can do it. All the variables that were used as constructors and the owner of the contract are public. 
+
+#### Contract Ended Successfully
+
+<p align='left'> <img src='images/contract_ended.jpg' width="600"></p>
+
+The default value of this boolean is false. It turns true if all investors get paid within the timeframe specified by the borrower. 
+
+#### Fundraising Ended
+
+<p align='left'> <img src='images/fundraising_ended.jpg' width="600"></p>
+
+The default value of this boolean is false. It turns true when the fundraising goal is reached. 
+
+#### Percentage Paid to Investors
+
+<p align='left'> <img src='images/percentage_paid.JPG' width="200"></p>
+
+Percentage of total tokens sold that have been refunded. This is usually 1% off due to lack of float type in solidity. 
+
+#### Time
+
+<p align='left'> <img src='images/time.JPG' width="200"></p>
+
+The contract timestamps three events: deployment of the contract, fundraising ends, payment to investors is complete. It is possible that one of the last two benchmarks is not met, in that case the value is zero. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970.
+
+#### Total Contract Funds and Total Supply
+
+<p align='left'> <img src='images/total_supply.JPG' width="300"></p>
+
+totalContractFundsinWei tells the user the total funds in the contract. Total supply is the number of tokens that are outstanding in the hands of investors. This example is from when a fundraising ended and no funds have been withdrawn, the borrower fundraised 250 ether, notice that the number of tokens is higher, the difference is the interest. 
+
+#### Outstanding Tokens Minus Contract Funds
+
+<p align='left'> <img src='images/difference.JPG' width="300"></p>
+
+This variable tells the user the difference between the outstanding tokens and the contract funds. It helps the borrower know how much do they have to deposit in the contract to make the investors whole. 
 
 ## Main Functions
 
@@ -93,48 +133,8 @@ Only the owner can call this function after the fundraising ends. Investors get 
 
 ## Main Public Variables
 
-#### Contract Ended Successfully
 
-<p align='left'> <img src='images/contract_ended.jpg' width="600"></p>
 
-The default value of this boolean is false. It turns true if all investors get paid within the timeframe specified by the borrower. 
 
-#### Fundraising Ended
 
-<p align='left'> <img src='images/fundraising_ended.jpg' width="600"></p>
 
-The default value of this boolean is false. It turns true when the fundraising goal is reached. 
-
-#### Percentage Paid to Investors
-
-<p align='left'> <img src='images/percentage_paid.JPG' width="200"></p>
-
-Percentage of total tokens sold that have been refunded. This is usually 1% off due to lack of float type in solidity. 
-
-#### Time
-
-<p align='left'> <img src='images/time.JPG' width="200"></p>
-
-The contract timestamps three events: deployment of the contract, fundraising ends, payment to investors is complete. It is possible that one of the last two benchmarks is not met, in that case the value is zero. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970.
-
-#### Total Contract Funds and Total Supply
-
-<p align='left'> <img src='images/total_supply.JPG' width="300"></p>
-
-totalContractFundsinWei tells the user the total funds in the contract. Total supply is the number of tokens that are outstanding in the hands of investors. This example is from when a fundraising ended and no funds have been withdrawn, the borrower fundraised 250 ether, notice that the number of tokens is higher, the difference is the interest. 
-
-#### Outstanding Tokens Minus Contract Funds
-
-<p align='left'> <img src='images/difference.JPG' width="300"></p>
-
-This variable tells the user the difference between the outstanding tokens and the contract funds. It helps the borrower know how much do they have to deposit in the contract to make the investors whole. 
-
-#### Constructors and Owner
-
-<p align='left'> <img src='images/maturity_in_months.JPG' width="200"></p>
-
-<p align='left'> <img src='images/fundraising_goal.JPG' width="300"></p>
-
-<p align='left'> <img src='images/owner.JPG' width="300"></p>
-
-All the variables that were used as constructors and the owner of the contract are public. 
