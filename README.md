@@ -82,33 +82,33 @@ The functions below can only be used under two conditions: the user is the contr
 
 It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrower's wallet. 
 
-<p align='left'> <img src='images/deposit.jpg'width="500"></p>
+<p align='left'> <img src='images/deposit.jpg'width="70"></p>
 
 The borrower can deposit any amount they want in the contract. 
 
-<p align='left'> <img src='images/make_monthly_payments.jpg'width="500"></p>
+<p align='left'> <img src='images/make_monthly_payments.jpg'width="70"></p>
 
 This function will send a monthly payment to investors (redeem part of the bonds they hold). One payment is defined as total number of bonds sold divided by number of monthly payments, the payment will be divided among investors proportional to the bonds they hold. All investors get paid at the same time, it is not possible to single out one investor or to pay a different amount. For this function to work there must be enough funds in the contract to make one payment. This function allows to make early payments.
 
-<p align='left'> <img src='images/withdraw_all_funds.jpg'width="500"></p>
+<p align='left'> <img src='images/withdraw_all_funds.jpg'width="70"></p>
 
 The funds raised from selling the bonds are stored in the contract. The borrower can use this function to withdraw all the funds from the contract. 
 
-<p align='left'> <img src='images/withdraw.jpg'width="500"></p>
+<p align='left'> <img src='images/withdraw.jpg'width="70"></p>
 
 The funds raised from selling the bonds are stored in the contract. The borrower can use this function to withdraw any amount from the contract.
 
 ### Investor Functions
 
-<p align='left'> <img src='images/buy.jpg'width="500"></p>
+<p align='left'> <img src='images/buy.jpg'width="70"></p>
 
 This function is valid only before the fundraising has ended. The contract won't let the investor buy more bonds than allowed by the fundraising goal. This function will automatically activate the function "How many bonds do I own?" displaying the total number of bonds owned by the investor. 
 
-<p align='left'> <img src='images/how_many_bonds_do_i_own.jpg'width="500"></p>
+<p align='left'> <img src='images/how_many_bonds_do_i_own.jpg'width="70"></p>
 
 The investor can use this function to query how many bonds they own. 
 
-<p align='left'> <img src='images/withdraw_investment.jpg'width="500"></p>
+<p align='left'> <img src='images/withdraw_investment.jpg'width="70"></p>
 
 Anyone can call this function (even if it is not the owner or an investor) if two conditions are true: the fundraising time ended and the fundraising goal wasn't reached. This function will give back the principal (without interest) to ***ALL*** investors. 
 
