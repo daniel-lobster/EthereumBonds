@@ -1,6 +1,6 @@
 # EthereumBonds: Issue Bonds in the Ethereum Blockchain
 
-<p align='center'> <img src='images/full_screen.jpg'></p>
+<p align='center'> <img src='images/full_screen.jpg' width="600"></p>
 
 EthereumBonds is a decentralized application (dapp) that by deploying a solidity contract allows borrowers to issue a bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invest or not. The solidity contract used by the dapp is called TokenLoans. 
 
@@ -32,7 +32,7 @@ Every solidity contract has these limitations. The Ethereum Virtual Machine does
 
 At the top there are two inputs: Contract address and signer private key. These two inputs are required for every transaction except for deployment when the borrower only needs their private key. 
 
-<p align='left'> <img src='images/full_screen_with_arrows.JPG'width="500"></p>
+<p align='left'> <img src='images/full_screen_with_arrows.jpg'width="500"></p>
 
 ## How to Deploy the Contract
 
@@ -78,7 +78,7 @@ There are basic frontend validations that will light up if the user is missing i
 ### Borrower Functions
 The functions below can only be used under two conditions: the user is the contract owner and after the fundraising has ended. 
 
-<p align='left'> <img src='images/deposit_enough_to_make_investors_whole.jpg'width="500"></p>
+<p align='left'> <img src='images/deposit_enough_to_make_investors_whole.jpg' height="50"></p>
 
 It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrower's wallet. 
 
