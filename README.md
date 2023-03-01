@@ -1,5 +1,4 @@
-# EthereumBonds
-## Issue Bonds in the Ethereum Blockchain
+# EthereumBonds: Issue Bonds in the Ethereum Blockchain
 
 <p align='center'> <img src='images/decentralized_finance.jpg'></p>
 
@@ -47,13 +46,13 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 ## Contract Info
 
-At the bottom right of the page there is the Contract Info field. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a private key can do it. All the constructor variables and the owner of the contract are public. 
+At the bottom right of the page there is the Contract Info field. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a valid contract address and private key can do it. Enter these two variables in the corresponding fields at the top and click:
 
-Below other public variables:
+[IMAGE]
 
-Fundraising Ended?: The default value of this boolean is false. It turns true when the fundraising goal is reached. 
+All the constructor variables and the owner of the contract are public. Below other the public variables:
 
-Contract Funds (ETH): The proceeds of the bond sale do not go directly to the borrower but rest within the contract itself. 
+Contract Funds (ETH): The proceeds of the bond sale do not directly go to the borrower but rest within the contract itself. 
 
 Outstanding Bonds: Total number of bonds that haven't been redeemed yet. 
 
@@ -61,44 +60,35 @@ Outstanding Bonds Minus Contract Funds: During the fundraising the funds in the 
 
 Percentage paid to investors: Redeemed bonds divided by total bonds sold times 100. This is usually 1 percentage point off due to lack of float type in solidity, thus 99 means that investors were paid in full. 
 
-Time contract was deployed:
+Time contract was deployed: This will populate imediatelly after deployment. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970. 
+
+Time fundraising ended: If N/A the fundraising hasn't ended. 
+
+Time payment ended: If N/A the investors haven't been paid back yet. 
+
+Contract ended successfully?: This boolean starts as false. It turns true if the borrower pays back the investors within the time estipulated in the contract. 
+
+## Functions
+There is basic frontend validations that will light up if the user is missing information. However, if the user enters an invalid contract addres or private key they will be able to click on the buttons but the transaction will not be recorded. Similarly, if the user is trying to do actions not allowed by the contract, they will be able to click on the buttons but the transaction will not be recorded. The dapp does not have front end validations for every possible error scenario. The best way to test whether a transaction was recorded is by paying attention to the Contract Info section, the information there will change accordingly if the transaction is successfully recorded. You can have the console (dev tools) in your browser open to see what are the errors you are getting back from Ethereum. 
+
+### Borrower Functions
+Only the owner of the contract by using their private key can use these functions. If anyone else tries to use them it will not work. 
+
+[image: deposit enough to make investors whole]
+
+This function is valid only after the fundraising has ended. It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrowers wallet. 
+
+[image: deposit]
+
+This function is valid only after the fundraising has ended. The borrower can deposit any amount they want in the contract. 
+
+[image: make monthly payment]
 
 
 
 
-### Contract Ended Successfully
 
-<p align='left'> <img src='images/contract_ended.jpg' width="600"></p>
-
-The default value of this boolean is false. It turns true if all investors get paid within the timeframe specified by the borrower. 
-
-
-
-#### Percentage Paid to Investors
-
-<p align='left'> <img src='images/percentage_paid.JPG' width="200"></p>
-
-Percentage of total tokens sold that have been refunded. This is usually 1% off due to lack of float type in solidity. 
-
-#### Time
-
-<p align='left'> <img src='images/time.JPG' width="200"></p>
-
-The contract timestamps three events: deployment of the contract, fundraising ends, payment to investors is complete. It is possible that one of the last two benchmarks is not met, in that case the value is zero. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970.
-
-
-
-#### Outstanding Tokens Minus Contract Funds
-
-<p align='left'> <img src='images/difference.JPG' width="300"></p>
-
-This variable tells the user the difference between the outstanding tokens and the contract funds. It helps the borrower know how much do they have to deposit in the contract to make the investors whole. 
-
-## Main Functions
-
-#### Buy TKL with Wei
-<p align='left'> <img src='images/buy_tkl.JPG' width="200"></p>
-<p align='left'> <img src='images/value.JPG' width="500"></p>
+### Buy TKL with Wei
 
 This function is public and can only be called before the fundraising ends. The fundraising ends when the fundraising goal is reached. In conjunction with the value interface in Remix the investor uses this button to buy tokens, there is a check in the function that stops the investor from buying more tokens than allowed by the fundraising goal. The investor can check the number of tokens bought by clicking the balanceOfSender button. 
 
