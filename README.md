@@ -19,7 +19,9 @@ The borrower has to buy back the bonds at parity i.e. 1 bond gives back 1 Ether.
 
 The difference between the sell and buy price is the interest the investors make. In this example the investors get an interest of 11.11%. The borrower redeems the bonds in equal monthly installments. 
 
-## What the Contract Cannot Do
+## Enforcement
+
+What the Contract Cannot Do:
 
 * Force payment
 * Schedule a payment 
@@ -48,7 +50,7 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 At the bottom right of the page there is the Contract Info field. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a valid contract address and private key can do it. Enter these two variables in the corresponding fields at the top and click:
 
-[IMAGE]
+[IMAGE: contract INfo]
 
 All the constructor variables and the owner of the contract are public. Below other the public variables:
 
@@ -84,7 +86,7 @@ This function is valid only after the fundraising has ended. The borrower can de
 
 [image: make monthly payment]
 
-
+This function will send a monthly payment to investors (redeem part of the bonds they hold). One payment is defined as total number of bonds sold divided by number of monthly payments, the payment will be divided among investors proportional to the bonds they hold. All investors get paid at the same time, it is not possible to single out one investor or to pay a different amount. For this function to work there has to be enough funds in the contract to make one payment.  
 
 
 
