@@ -8,7 +8,7 @@ The borrower sells its bonds at a discount and has to buy them back at parity.
 
 ### Sell Bonds at a Discount
 
-In this example the borrower sells its bonds at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 bonds. 
+In this example the borrower sells its bonds at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 bonds. The symbol for the bonds is ETB.
 
 <p align='left'> <img src='images/900_1000.jpg'width="500"></p>
 
