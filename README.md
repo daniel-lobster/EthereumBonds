@@ -86,7 +86,7 @@ It will deposit in the contract a value equal to the variable "Outstanding bonds
 
 The borrower can deposit any amount they want in the contract. 
 
-<p align='left'> <img src='images/make_monthly_payments.jpg'height="70"></p>
+<p align='left'> <img src='images/make_monthly_payment.jpg'height="70"></p>
 
 This function will send a monthly payment to investors (redeem part of the bonds they hold). One payment is defined as total number of bonds sold divided by number of monthly payments, the payment will be divided among investors proportional to the bonds they hold. All investors get paid at the same time, it is not possible to single out one investor or to pay a different amount. For this function to work there must be enough funds in the contract to make one payment. This function allows to make early payments.
 
