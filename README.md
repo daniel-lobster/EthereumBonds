@@ -98,24 +98,20 @@ The funds raised from the sell of the bonds are stored in the contract. The borr
 
 The funds raised from the sell of the bonds are stored in the contract. The borrower can use this function to withdraw any amount from the contract.
 
-### Borrower Functions
+### Investor Functions
+
+[image: buy]
+
+This function is valid only before the fundraising has ended. The contract won't let the investor buy more bonds than allowed by the fundraising goal. This function will automatically activate the function "How many bonds do I own?" displaying the total number of bonds owned by the investor. 
+
+[image: How many bonds do I own?]
+
+The investor can use this function to query how many bonds they own. 
+
+[image: Withdraw Investment]
+
+Anyone can call this function (even if the user did not invest) if two conditions are true: the fundraising time ended and the fundraising goal wasn't reached. This function will give back the principal (without interest) to ***ALL*** investors. 
 
 
 
-
-
-
-This function is public and can only be called before the fundraising ends. The fundraising ends when the fundraising goal is reached. In conjunction with the value interface in Remix the investor uses this button to buy tokens, there is a check in the function that stops the investor from buying more tokens than allowed by the fundraising goal. The investor can check the number of tokens bought by clicking the balanceOfSender button. 
-
-<p align='left'> <img src='images/balance_of_sender.JPG' width="200"></p>
-
- 
-
-
-
-#### Investor Refund Principal
-
-<p align='left'> <img src='images/investor_refund.JPG' width="200"></p>
-
-Anyone can call this function if two conditions are true: the fundraising time has ended and the fundraising goal hasn't been reached. Investors get refunded without interest. 
 
