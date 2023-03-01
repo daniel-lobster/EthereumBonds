@@ -78,7 +78,7 @@ There are basic frontend validations that will light up if the user is missing i
 ### Borrower Functions
 The functions below can only be used under two conditions: the user is the contract owner and after the fundraising has ended. 
 
-<p align='left'> <img src='images/deposit_enough_to_make_investors_whole.jpg' height="100"></p>
+<p align='left'> <img src='images/deposit_enough_to_make_investors_whole.jpg' height="70"></p>
 
 It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrower's wallet. 
 
