@@ -32,13 +32,13 @@ Every solidity contract has these limitations. The Ethereum Virtual Machine does
 
 At the top there are two inputs: Contract address and signer private key. These two inputs are required for every transaction except for deployment when the borrower only needs their private key. 
 
-<p align='left'> <img src='images/full_screen_with_arrows.jpg'width="500"></p>
+<p align='left'> <img src='images/full_screen_with_arrows2.jpg'width="500"></p>
 
 ## How to Deploy the Contract
 
 The contract has 5 constructors:
 
-<p align='left'> <img src='images/deploy.jpg'width="500"></p>
+<p align='left'> <img src='images/deploy2.jpg'width="500"></p>
 
 1) Fundraising goal (ETH): The contract needs a fundraising goal denominated in Ethereum. 
 2) Discounted price for 1000 (ETB): How much will an investor pay for 1000 of the borrower's bonds? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
@@ -52,7 +52,7 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 At the bottom right of the page there is the Contract Info field. Every time you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a valid contract address and private key can do it. Enter these two variables in the corresponding fields at the top and click on "Get Info".
 
-<p align='left'> <img src='images/contract_info.jpg'width="500"></p>
+<p align='left'> <img src='images/contract_info2.jpg'width="500"></p>
 
 All the constructor variables and the owner of the contract are public. Below other the public variables:
 
