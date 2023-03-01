@@ -132,7 +132,7 @@ function ContractInfo({
             <button className="btn button mb-4" style={{width : "10em"}} onClick={() => getInfo()}>Get Info</button>
             <table>
                 <tr>
-                    <td style = {{width:"45%"}}>
+                    <td style = {{width:"40%"}}>
                         <p>Owner's address: </p>
                     </td>
                     <td>
