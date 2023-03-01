@@ -1,6 +1,6 @@
 # EthereumBonds: Issue Bonds in the Ethereum Blockchain
 
-<p align='center'> <img src='images/decentralized_finance.jpg'></p>
+<p align='center'> <img src='images/full_screen.jpg'></p>
 
 EthereumBonds is a decentralized application (dapp) that by deploying a solidity contract allows borrowers to issue a bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invest or not. The solidity contract used by the dapp is called TokenLoans. 
 
@@ -10,12 +10,12 @@ The borrower sells its bonds at a discount and has to buy them back at parity.
 
 In this example the borrower sells its bonds at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 bonds. 
 
-<p align='left'> <img src='images/discounted_rate.JPG'width="500"></p>
+<p align='left'> <img src='images/900_1000.JPG'width="500"></p>
 
 ### Redeem the Bonds at Parity
 
 The borrower has to buy back the bonds at parity i.e. 1 bond gives back 1 Ether. The bonds produced by the contract have the same number of decimals (18) as Ether. 
-<p align='left'> <img src='images/parity_rate.JPG'width="500"></p>
+<p align='left'> <img src='images/1000_1000.JPG'width="500"></p>
 
 The difference between the sell and buy price is the interest the investors make. In this example the investors get an interest of 11.11%. The borrower redeems the bonds in equal monthly installments. 
 
@@ -32,11 +32,13 @@ Every solidity contract has these limitations. The Ethereum Virtual Machine does
 
 At the top there are two inputs: Contract address and signer private key. These two inputs are required for every transaction except for deployment when the borrower only needs their private key. 
 
+<p align='left'> <img src='images/full_screen_with_arrows.JPG'width="500"></p>
+
 ## How to Deploy the Contract
 
 The contract has 5 constructors:
 
-<p align='left'> <img src='images/constructors.JPG' width="500"></p>
+<p align='left'> <img src='images/deploy.JPG'width="500"></p>
 
 1) Fundraising goal (ETH): The contract needs a fundraising goal denominated in Ethereum. 
 2) Discounted price for 1000 (ETB): How much will an investor pay for 1000 of the borrower's bonds? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
@@ -48,11 +50,9 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 ## Contract Info
 
-[IMAGE: contract info field]
+At the bottom right of the page there is the Contract Info field. Every time you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a valid contract address and private key can do it. Enter these two variables in the corresponding fields at the top and click on "Get Info".
 
-At the bottom right of the page there is the Contract Info field. Every time you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a valid contract address and private key can do it. Enter these two variables in the corresponding fields at the top and click:
-
-[IMAGE: contract info button]
+<p align='left'> <img src='images/contract_info.JPG'width="500"></p>
 
 All the constructor variables and the owner of the contract are public. Below other the public variables:
 
@@ -78,37 +78,37 @@ There are basic frontend validations that will light up if the user is missing i
 ### Borrower Functions
 The functions below can only be used under two conditions: the user is the contract owner and after the fundraising has ended. 
 
-[image: deposit enough to make investors whole]
+<p align='left'> <img src='images/deposit_enough_to_make_investors_whole.JPG'width="500"></p>
 
 It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrower's wallet. 
 
-[image: deposit]
+<p align='left'> <img src='images/deposit.JPG'width="500"></p>
 
 The borrower can deposit any amount they want in the contract. 
 
-[image: make monthly payment]
+<p align='left'> <img src='images/make_monthly_payments.JPG'width="500"></p>
 
 This function will send a monthly payment to investors (redeem part of the bonds they hold). One payment is defined as total number of bonds sold divided by number of monthly payments, the payment will be divided among investors proportional to the bonds they hold. All investors get paid at the same time, it is not possible to single out one investor or to pay a different amount. For this function to work there must be enough funds in the contract to make one payment. This function allows to make early payments.
 
-[image: withdraw all funds]
+<p align='left'> <img src='images/withdraw_all_funds.JPG'width="500"></p>
 
 The funds raised from selling the bonds are stored in the contract. The borrower can use this function to withdraw all the funds from the contract. 
 
-[image: withdraw]
+<p align='left'> <img src='images/withdraw.JPG'width="500"></p>
 
 The funds raised from selling the bonds are stored in the contract. The borrower can use this function to withdraw any amount from the contract.
 
 ### Investor Functions
 
-[image: buy]
+<p align='left'> <img src='images/buy.JPG'width="500"></p>
 
 This function is valid only before the fundraising has ended. The contract won't let the investor buy more bonds than allowed by the fundraising goal. This function will automatically activate the function "How many bonds do I own?" displaying the total number of bonds owned by the investor. 
 
-[image: How many bonds do I own?]
+<p align='left'> <img src='images/how_many_bonds_do_i_own.JPG'width="500"></p>
 
 The investor can use this function to query how many bonds they own. 
 
-[image: Withdraw Investment]
+<p align='left'> <img src='images/withdraw_investment.JPG'width="500"></p>
 
 Anyone can call this function (even if it is not the owner or an investor) if two conditions are true: the fundraising time ended and the fundraising goal wasn't reached. This function will give back the principal (without interest) to ***ALL*** investors. 
 
