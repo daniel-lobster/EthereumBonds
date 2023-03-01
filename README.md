@@ -48,94 +48,74 @@ The wallet that deploys the contract becomes the owner. The contract address wil
 
 ## Contract Info
 
+[IMAGE: contract info field]
+
 At the bottom right of the page there is the Contract Info field. Everytime you interact with a contract the information will update to show the most current data. You don't have to be the owner of the contract, not even an investor in order to query the contract, anyone with a valid contract address and private key can do it. Enter these two variables in the corresponding fields at the top and click:
 
-[IMAGE: contract INfo]
+[IMAGE: contract info button]
 
 All the constructor variables and the owner of the contract are public. Below other the public variables:
 
-Contract Funds (ETH): The proceeds of the bond sale do not directly go to the borrower but rest within the contract itself. 
+* Contract Funds (ETH): The proceeds of the bond sale do not directly go to the borrower but rest within the contract itself. 
 
-Outstanding Bonds: Total number of bonds that haven't been redeemed yet. 
+* Outstanding Bonds: Total number of bonds that haven't been redeemed yet. 
 
-Outstanding Bonds Minus Contract Funds: During the fundraising the funds in the contract will be less that the number of bonds sold. The borrower will have to pay that difference which is the interest owed to investors.  
+* Outstanding Bonds Minus Contract Funds: During the fundraising the funds in the contract will be less that the number of bonds sold. The borrower will have to pay that difference which is the interest owed to investors.  
 
-Percentage paid to investors: Redeemed bonds divided by total bonds sold times 100. This is usually 1 percentage point off due to lack of float type in solidity, thus 99 means that investors were paid in full. 
+* Percentage paid to investors: Redeemed bonds divided by total bonds sold times 100. This is usually 1 percentage point off due to lack of float type in solidity, thus 99 means that investors were paid in full. 
 
-Time contract was deployed: This will populate imediatelly after deployment. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970. 
+* Time contract was deployed: This will populate imediatelly after deployment. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970. 
 
-Time fundraising ended: If N/A the fundraising hasn't ended. 
+* Time fundraising ended: If N/A the fundraising hasn't ended. 
 
-Time payment ended: If N/A the investors haven't been paid back yet. 
+* Time payment ended: If N/A the investors haven't been paid back yet. 
 
-Contract ended successfully?: This boolean starts as false. It turns true if the borrower pays back the investors within the time estipulated in the contract. 
+* Contract ended successfully?: This boolean starts as false. It turns true if the borrower pays back the investors within the time estipulated in the contract. 
 
 ## Functions
-There is basic frontend validations that will light up if the user is missing information. However, if the user enters an invalid contract addres or private key they will be able to click on the buttons but the transaction will not be recorded. Similarly, if the user is trying to do actions not allowed by the contract, they will be able to click on the buttons but the transaction will not be recorded. The dapp does not have front end validations for every possible error scenario. The best way to test whether a transaction was recorded is by paying attention to the Contract Info section, the information there will change accordingly if the transaction is successfully recorded. You can have the console (dev tools) in your browser open to see what are the errors you are getting back from Ethereum. 
+There is basic frontend validations that will light up if the user is missing information. However, if the user enters an invalid contract addres or private key they will be able to click on the buttons but the transaction will not be recorded. Similarly, if the user is trying to do actions not allowed by the contract, they will be able to click on the buttons but the transaction will not be recorded. The dapp does not have front end validations for every possible error scenario. The best way to test whether a transaction was recorded is by paying attention to the Contract Info section. You can have the console (dev tools) in your browser open to see what are the errors you are getting back from Ethereum. 
 
 ### Borrower Functions
-Only the owner of the contract by using their private key can use these functions. If anyone else tries to use them it will not work. 
+The functions below can only be used under two conditions: the user is the contract owner and after the fundraising has ended. 
 
 [image: deposit enough to make investors whole]
 
-This function is valid only after the fundraising has ended. It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrowers wallet. 
+It will deposit in the contract a value equal to the variable "Outstanding bonds minus contract funds". After you click on it, "Outstanding bonds minus contract funds" will fall to zero. The funds to pay investors come out from the contract, not the borrowers wallet. 
 
 [image: deposit]
 
-This function is valid only after the fundraising has ended. The borrower can deposit any amount they want in the contract. 
+The borrower can deposit any amount they want in the contract. 
 
 [image: make monthly payment]
 
-This function will send a monthly payment to investors (redeem part of the bonds they hold). One payment is defined as total number of bonds sold divided by number of monthly payments, the payment will be divided among investors proportional to the bonds they hold. All investors get paid at the same time, it is not possible to single out one investor or to pay a different amount. For this function to work there has to be enough funds in the contract to make one payment.  
+This function will send a monthly payment to investors (redeem part of the bonds they hold). One payment is defined as total number of bonds sold divided by number of monthly payments, the payment will be divided among investors proportional to the bonds they hold. All investors get paid at the same time, it is not possible to single out one investor or to pay a different amount. For this function to work there has to be enough funds in the contract to make one payment. This function allows to make early payments.
+
+[image: withdraw all funds]
+
+The funds raised from the sell of the bonds are stored in the contract. The borrower can use this function to withdraw all the funds in the contract. 
+
+[image: withdraw]
+
+The funds raised from the sell of the bonds are stored in the contract. The borrower can use this function to withdraw any amount from the contract.
+
+### Borrower Functions
 
 
 
-### Buy TKL with Wei
+
+
 
 This function is public and can only be called before the fundraising ends. The fundraising ends when the fundraising goal is reached. In conjunction with the value interface in Remix the investor uses this button to buy tokens, there is a check in the function that stops the investor from buying more tokens than allowed by the fundraising goal. The investor can check the number of tokens bought by clicking the balanceOfSender button. 
 
 <p align='left'> <img src='images/balance_of_sender.JPG' width="200"></p>
 
-#### Make Monthly Payment
+ 
 
-<p align='left'> <img src='images/make_monthly_payment.JPG' width="200"></p>
 
-Only the owner can call this function after the fundraising ends. It takes the number of tokens sold and divides that between the number of monthly payments. It sends out a payment to investors proportional to the number of tokens they bought. It does not take into account possible early payments made by the borrower. 
-
-#### Send Payment to Investors
-
-<p align='left'> <img src='images/send_payment.JPG' width="500"></p>
-
-Only the owner can call this function after the fundraising ends. It divides up the amount entered in the interface among investors proportional to the tokens they bought. It is not possible for the borrower to pick one particular investor to receive the payment. The contract does not penalize early payment. 
-
-#### Withdraw Funds
-
-<p align='left'> <img src='images/withdraw_funds.JPG' width="500"></p>
-
-Only the owner can call this function after the fundraising ends. The funds raised live in the contract, not in the owner's wallet. The owner has to use this function to withdraw funds.
 
 #### Investor Refund Principal
 
 <p align='left'> <img src='images/investor_refund.JPG' width="200"></p>
 
 Anyone can call this function if two conditions are true: the fundraising time has ended and the fundraising goal hasn't been reached. Investors get refunded without interest. 
-
-#### Owner Refund Principal
-
-<p align='left'> <img src='images/owner_refund.JPG' width="200"></p>
-
-Only the owner can call this fuction before the fundraising ends. Investors get refunded without interest.
-
-#### Deposit
-
-<p align='left'> <img src='images/deposit.JPG' width="200"></p>
-
-Only the owner can call this function after the fundraising ends. Investors get paid from the funds that are in the contract, the borrower has to deposit enought funds to make the payments. 
-
-## Main Public Variables
-
-
-
-
-
 
