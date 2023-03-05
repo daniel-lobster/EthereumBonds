@@ -1,14 +1,14 @@
-# EthereumBonds: Issue Bonds in the Ethereum Blockchain
+# EthereumBonds: React Dapp to Issue Bonds in the Ethereum Blockchain Using a Solidity Smart Contract
 
 <p align='center'> <img src='images/full_screen.jpg' width="600"></p>
 
-EthereumBonds is a decentralized application (dapp) that by deploying a solidity contract allows borrowers to issue a bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invest or not. The solidity contract used by the dapp is called TokenLoans. 
+EthereumBonds is a decentralized application (dapp) built on React that by deploying a solidity contract allows borrowers to issue a zero-cupon bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invest or not. The solidity contract used by the dapp is called TokenLoans. 
 
 The borrower sells its bonds at a discount and has to buy them back at parity. 
 
 ### Sell Bonds at a Discount
 
-In this example the borrower sells its bonds at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 bonds. The symbol for the bonds is ETB.
+In this example the borrower sells its bonds at a ratio of 900 to 1000 i.e. 900 Ether gives the investor 1000 bonds. The symbol for Ether is ETH and for the bonds is ETB.
 
 <p align='left'> <img src='images/900_1000.jpg'width="500"></p>
 
@@ -40,10 +40,10 @@ The contract has 5 constructors:
 
 <p align='left'> <img src='images/deploy2.jpg'width="500"></p>
 
-1) Fundraising goal (ETH): The contract needs a fundraising goal denominated in Ethereum. 
+1) Fundraising goal (ETH): The contract needs a fundraising goal denominated in Ether. 
 2) Discounted price for 1000 (ETB): How much will an investor pay for 1000 of the borrower's bonds? This will define the exchange rate the borrower is selling its tokens for. 1000 means that the investors get zero interest. We suggest a number between 950 (interest of 5.26%) and 800 (interest of 25%).
 3) Maturity in months: How many equal monthly payments does the borrower want to make?
-4) Number of fundraising days: If the time ends and the goal hasn't been reached investors can pull their money out. If the fundraising time hasn't ended the borrower can return the principal to investors. 
+4) Number of fundraising days: If the time ends and the goal hasn't been reached investors can pull their money out.
 5) Grace period in months: number of months before the borrower must start making payments. 
 
 The wallet that deploys the contract becomes the owner. The contract address will appear in the corresponding input at the top. 
@@ -54,7 +54,7 @@ At the bottom right of the page there is the Contract Info field. Every time you
 
 <p align='left'> <img src='images/contract_info2.jpg'width="500"></p>
 
-All the constructor variables and the owner of the contract are public. Below other the public variables:
+All the constructor variables and the owner of the contract are public. Below the other public variables:
 
 * Contract Funds (ETH): The proceeds of the bond sale do not go directly to the borrower but rest within the contract itself. 
 
@@ -64,7 +64,7 @@ All the constructor variables and the owner of the contract are public. Below ot
 
 * Percentage paid to investors: Redeemed bonds divided by total bonds sold times 100. This is usually 1 percentage point off due to lack of float type in solidity, thus 99 means that investors were paid in full. 
 
-* Time contract was deployed: This will populate immediatelly after deployment. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970. 
+* Time contract was deployed: This will populate immediatelly after deployment. Like in all solidity contracts time is recorded as number of seconds since Jan 1st 1970. It is rendered in your computer according to local time. 
 
 * Time fundraising ended: If N/A the fundraising hasn't ended. 
 
