@@ -1,7 +1,10 @@
 # EthereumBonds: React Dapp to Issue Bonds in the Ethereum Blockchain Using a Solidity Smart Contract
 
 Start by watching the YouTube video:
+<br>
 https://youtu.be/82erXHt1dUE
+<br>
+<br>
 
 <p align='center'> <img src='images/full_screen.jpg' width="600"></p>
 
