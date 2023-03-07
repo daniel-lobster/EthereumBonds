@@ -1,5 +1,8 @@
 # EthereumBonds: React Dapp to Issue Bonds in the Ethereum Blockchain Using a Solidity Smart Contract
 
+Start by watching the YouTube video:
+https://youtu.be/82erXHt1dUE
+
 <p align='center'> <img src='images/full_screen.jpg' width="600"></p>
 
 EthereumBonds is a decentralized application (dapp) built on React that by deploying a solidity contract allows borrowers to issue a zero-cupon bond in the Ethereum blockchain, investors use the same dapp to buy the bonds and track payments. Investors buy the bonds (ERC20 tokens) and they get paid back principal and interest in equal monthly installments. The borrower selects the terms of the contract and investors decide whether to invest or not. The solidity contract used by the dapp is called TokenLoans. 
