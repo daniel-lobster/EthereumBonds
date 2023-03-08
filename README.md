@@ -5,6 +5,12 @@ Start by watching the YouTube video:
 https://youtu.be/82erXHt1dUE
 <br>
 <br>
+Write me an email if you are interested in working together on and dapp:
+<br>
+daniellobster80@gmail.com
+<br>
+<br>
+
 
 <p align='center'> <img src='images/full_screen.jpg' width="600"></p>
 
