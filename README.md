@@ -5,7 +5,7 @@ Start by watching the YouTube video:
 https://youtu.be/82erXHt1dUE
 <br>
 <br>
-Write me an email if you are interested in working together on and dapp:
+Write me an email if you are interested in working together on a dapp:
 <br>
 daniellobster80@gmail.com
 <br>
